@@ -30,4 +30,4 @@ With this bot in a server, a user can use the /start command with a gamemode (op
 
 
 
-Contact alltrees#2498 on discord for more info or if you want to implement this bot into your server.
+<sub>Contact alltrees#2498 on discord for more info or if you want to implement this bot into your server.</sub>
