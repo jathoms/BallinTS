@@ -1,5 +1,6 @@
 # BallinTS
 Ballin bot, new and improved, and in Typescript!
+This is a discord bot which allows people to create lobbies for TF2 in discord chat 
 
 # Usage
 
@@ -26,6 +27,7 @@ With this bot in a server, a user can use the /start command with a gamemode (op
 
 #### term
  Returns all maps with the term in it in order to find the exact name of a map given some part of it.
+
 
 
 Contact alltrees#2498 on discord for more info or if you want to implement this bot into your server.
