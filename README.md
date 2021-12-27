@@ -1,6 +1,6 @@
 # BallinTS
 Ballin bot, new and improved, and in Typescript!
-This is a discord bot which allows people to create lobbies for TF2 in discord chat 
+This is a discord bot which allows people to create lobbies for TF2 in discord chat.
 
 # Usage
 
