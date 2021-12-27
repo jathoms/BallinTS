@@ -20,11 +20,11 @@ for (const file of commandFiles) {
 }
 
 const componentHandlerFiles = fs
-  .readdirSync("./components/handlers")
+  .readdirSync("./components/subcomponents")
   .filter((file: string) => file.endsWith(".js"));
 
 for (const file of componentHandlerFiles) {
-  const handler = require(`./components/handlers/${file}`);
+  const handler = require(`./components/subcomponents/${file}`);
   componentHandlers.set(handler.data.name, handler);
 }
 

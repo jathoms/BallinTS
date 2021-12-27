@@ -1,11 +1,11 @@
 import { ButtonInteraction } from "discord.js";
-import join_button_execute from "../handler_util/join_button_execute";
+import join_button_execute from "../component_util/join_button_execute";
 import Team from "../../util/teams";
 
 module.exports = {
-  data: { name: "REDbutton" },
+  data: { name: "BLUbutton" },
   async execute(interaction: ButtonInteraction) {
-    const team = new Team("RED");
+    const team = new Team("BLU");
     const response = await join_button_execute(interaction, team);
     await interaction.reply({
       content: response,

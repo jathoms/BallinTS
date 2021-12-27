@@ -3,12 +3,14 @@ import {
   SlashCommandStringOption,
   SlashCommandBuilder,
 } from "@discordjs/builders";
-import { CommandInteraction } from "discord.js";
+import { CommandInteraction, GuildMemberRoleManager } from "discord.js";
 import { createInitialStartEmbed } from "../embeds/start_embed";
 import random_map from "../util/random_map";
 import filter_configs from "../util/filter_configs";
 import { Formats } from "../util/formats";
 import get_maps from "../util/get_maps";
+import dotenv from "dotenv";
+dotenv.config({ path: `${__dirname}/.env` });
 
 const getFormatsForChoices = () => {
   const choices = Array.from(Formats.keys()).map(
@@ -52,6 +54,17 @@ module.exports = {
     const formatName = options.getString("format")!;
     const format = Formats.get(formatName)!;
     const teamSize = format.teamSize;
+    if (
+      !(interaction.member.roles as GuildMemberRoleManager).cache.has(
+        process.env.ALLOWED_ROLE!
+      )
+    ) {
+      await interaction.reply({
+        content: `You don't have the required role to start lobbies!`,
+        ephemeral: true,
+      });
+      return;
+    }
     let map = options.getString("map");
     if (!map) {
       map = random_map(formatName);
@@ -64,6 +77,7 @@ module.exports = {
       return;
     }
     const config = await filter_configs(
+      //so that the user only has to type "etf2l" or "ugc" instead of the specific config name.
       map,
       format,
       options.getString("config")

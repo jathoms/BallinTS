@@ -1,4 +1,4 @@
-import { createReadyRow } from "./../ready_interaction_row";
+import { createReadyRow } from "../ready_interaction_row";
 import { ButtonInteraction, MessageEmbed, Snowflake } from "discord.js";
 import update_embed from "./update_embed";
 import { client } from "../../Bot";
@@ -73,13 +73,14 @@ const embedWithRemovedIdlePlayers = async (
   for (const ID of playersInLobby) {
     if (!readyPlayers.includes(ID) && ID !== "-1") {
       [response, newEmbed] = await remove_player(embed, ID);
-      if (response == "success") {
+      if (response === "success") {
         embed = newEmbed;
       } else {
         console.log("error removing afk players");
       }
     }
   }
+
   return embed;
 };
 
@@ -89,34 +90,30 @@ export default async (
 ) => {
   let readyPlayers: Snowflake[] = [];
   await messagePlayers(preCountdownEmbed, interaction);
-  let count = 7; //seconds of countdown
+  let count = 25; //seconds of countdown
   preCountdownEmbed.fields!.length = 3;
   let counting = true; //make sure this is specified outside of setInterval or it goes sicko mode when the last player quickly joins and leaves, or if the last person to join somehow joins the other team before the countdown starts (should only be possible in testing)
 
   let countdown = setInterval(async () => {
-    console.log(
-      `${readyPlayers.length} == ${
-        getIDs(interaction.message.embeds[0].description!).length
-      }`
-    );
     if (
-      readyPlayers.length > 0 //== getIDs(interaction.message.embeds[0].description!).length
+      readyPlayers.length ===
+      getIDs(interaction.message.embeds[0].description!).length
     ) {
       console.log("all players ready");
-      reserveServer(interaction);
       clearInterval(countdown);
+      setTimeout(() => reserveServer(interaction, preCountdownEmbed), 1000);
     }
 
-    //in an odd order for nice appearance (no extra second for 0 etc e.g 3...2...1...cancel)
-    //
+    //in this order for nice appearance (no extra second for 0 e.g 3...2...1...cancel)
     if (count === 0) {
       clearInterval(countdown);
-      console.log("now!");
+      console.log("ready phase timed out");
       let newEmbed = await embedWithRemovedIdlePlayers(
         preCountdownEmbed,
         readyPlayers
       );
-      update_embed(interaction, newEmbed);
+      newEmbed.fields.length = 2;
+      update_embed(interaction, newEmbed, false);
       //now remove players
     } else {
       let newEmbed = addCountdownField(count, preCountdownEmbed);
@@ -145,12 +142,15 @@ export default async (
       counting = false;
       console.log("cancelled countdown");
     } else if (
-      //ready button is clicked by someone in the lobby while the countdown is counting
+      //ready button is clicked by someone in the lobby while the countdown is counting (also checks if the ready button is linked to the correct lobby)
       counting &&
-      preCountdownEmbed.description!.includes(buttonClicked.user.id) &&
-      buttonClicked.channel?.type === "DM" && //possibly redundant
       buttonClicked.customId === "readyButton" &&
-      !readyPlayers.includes(buttonClicked.user.id)
+      buttonClicked.channel?.type === "DM" && //redundant, but adds clarity
+      preCountdownEmbed.description!.includes(buttonClicked.user.id) &&
+      !readyPlayers.includes(buttonClicked.user.id) &&
+      buttonClicked.message.embeds[0].description!.includes(
+        interaction.message.id
+      )
     ) {
       readyPlayers.push(buttonClicked.user.id);
       console.log(`${buttonClicked.user.username} is ready`);

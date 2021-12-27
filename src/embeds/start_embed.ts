@@ -1,4 +1,4 @@
-import { MessageEmbed, User } from "discord.js";
+import { MessageEmbed, Snowflake, User } from "discord.js";
 import empty_slot_string from "../util/empty_slot_string";
 import icon_url from "../util/icon_url";
 
@@ -7,7 +7,7 @@ const initialPlayerString = (teamSize: number) => {
 };
 
 const initialPlayerIDs = (teamSize: number) => {
-  return Array<string>(teamSize).fill("-1");
+  return Array<Snowflake>(teamSize).fill("-1");
 };
 
 export const createInitialStartEmbed = (

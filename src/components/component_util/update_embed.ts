@@ -4,10 +4,11 @@ import { ButtonInteraction, MessageEmbed } from "discord.js";
 export default (
   interaction: ButtonInteraction,
   newEmbed: MessageEmbed,
-  isFull: boolean = false
+  isFull: boolean = false,
+  hasStarted: boolean = false
 ) => {
   interaction.webhook.editMessage(interaction.message.id, {
     embeds: [newEmbed],
-    components: [createActionRow(isFull)],
+    components: [createActionRow(isFull, hasStarted)],
   });
 };

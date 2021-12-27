@@ -1,6 +1,6 @@
 import { ButtonInteraction, MessageEmbed, Snowflake, User } from "discord.js";
 import update_embed from "./update_embed";
-import lobby_full from "./lobby_is_full";
+import lobby_is_full from "./lobby_is_full";
 import Team from "../../util/teams";
 import empty_slot_string from "../../util/empty_slot_string";
 import lobby_full_state from "./lobby_full_state";
@@ -106,7 +106,7 @@ export default (
     update_embed(interaction, newEmbed);
 
     if (
-      lobby_full(
+      lobby_is_full(
         playerIDsWithAddedPlayer, //these are both of the player ID arrays of Snowflakes (both teams)
         desc
           .substring(

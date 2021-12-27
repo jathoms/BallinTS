@@ -64,7 +64,7 @@ export default (format: string) => {
         "cp_sunshine_event",
         "koth_product_rc9",
         "cp_granary_pro_rc9",
-        "koth_bagel_fc4",
+        "koth_bagel_rc4",
       ];
       break;
   }

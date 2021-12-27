@@ -16,19 +16,23 @@ const createJoinButton = (team: Team, full: boolean) => {
     .setDisabled(full);
   return button;
 };
-const createLeaveButton = () => {
+const createLeaveButton = (started: boolean) => {
   const button = new MessageButton()
     .setCustomId(`leaveButton`)
     .setLabel("fear")
-    .setStyle("SECONDARY");
+    .setStyle("SECONDARY")
+    .setDisabled(started);
   return button;
 };
 
-export const createActionRow = (full: boolean = false) => {
+export const createActionRow = (
+  full: boolean = false,
+  started: boolean = false
+) => {
   const row = new MessageActionRow().addComponents([
     createJoinButton(new Team("BLU"), full),
     createJoinButton(new Team("RED"), full),
-    createLeaveButton(),
+    createLeaveButton(started),
   ]);
   return row;
 };

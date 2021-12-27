@@ -1,7 +1,7 @@
 import { ButtonInteraction, MessageEmbed } from "discord.js";
-import remove_player from "../handler_util/remove_player";
-import handle_deletion_response from "../handler_util/player_remove_response_handler";
-import update_embed from "../handler_util/update_embed";
+import remove_player from "../component_util/remove_player";
+import handle_deletion_response from "../component_util/player_remove_response_handler";
+import update_embed from "../component_util/update_embed";
 
 module.exports = {
   data: { name: "leaveButton" },
