@@ -12,20 +12,20 @@ With this bot in a server, a user can use the /start command with a gamemode (op
 ### Arguments
   
 #### format
- \ The gamemode of the lobby (6v6, Highlander etc).
+ The gamemode of the lobby (6v6, Highlander etc).
   
 #### map
- \ The map that the lobby's game will take place on. Leave blank for random.
+ The map that the lobby's game will take place on. Leave blank for random.
   
 #### config
- \ The config that the server will run on. Leave blank for automatic.
+ The config that the server will run on. Leave blank for automatic.
   
 ## /maps
 
 ### Arguments
 
 #### term
- \ Returns all maps with the term in it in order to find the exact name of a map given some part of it.
+ Returns all maps with the term in it in order to find the exact name of a map given some part of it.
 
 
 Contact alltrees#2498 on discord for more info or if you want to implement this bot into your server.
