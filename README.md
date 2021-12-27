@@ -11,14 +11,14 @@ With this bot in a server, a user can use the /start command with a gamemode (op
 
 ### Arguments
   
-#### format
-  The gamemode of the lobby (6v6, Highlander etc).
+- {#### format
+  The gamemode of the lobby (6v6, Highlander etc).}
   
-#### map
-  The map that the lobby's game will take place on. Leave blank for random.
+- {#### map
+  The map that the lobby's game will take place on. Leave blank for random.}
   
-#### config
-  The config that the server will run on. Leave blank for automatic.
+- {#### config
+  The config that the server will run on. Leave blank for automatic.}
   
 ## /maps
 
