@@ -55,7 +55,7 @@ module.exports = {
     const format = Formats.get(formatName)!;
     const teamSize = format.teamSize;
     if (
-      !(interaction.member.roles as GuildMemberRoleManager).cache.has(
+      !(interaction.member?.roles as GuildMemberRoleManager).cache.has(
         process.env.ALLOWED_ROLE!
       )
     ) {
