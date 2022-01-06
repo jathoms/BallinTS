@@ -6,6 +6,8 @@ This is a discord bot which allows people to create lobbies for TF2 in discord c
 
 With this bot in a server, a user can use the /start command with a gamemode (optionally map/config) in order to create a lobby. Once the lobby is created, everyone joining will trigger a ready-up phase, once everyone is ready, a server will be reserved through serveme.tf and the people in the lobby will be sent a connect string.
 
+To get this bot in your server, read the footer :)
+
 # Commands
 
 ## /start
